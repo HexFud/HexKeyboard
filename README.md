@@ -47,34 +47,24 @@ You can put heated inserts in the highlited zones and then screw the pcb in
 | 8 | M3x16mm screws |
 | 4 | M3x5x4mm heatset inserts |
 
-## Firmware
+## Firmware 
 
-Only KMK works on this board — QMK doesn't support the SAMD21 chip (there's an open QMK issue asking for it since 2020, never implemented; confirmed by trying to compile: processor: 'SAMD21' is not one of [...]). The qmk/ folder in this repo is kept only as a record of the matrix/pin design work, it will never actually compile.
-
-## KMK (kmk/)
-
-CircuitPython + KMK, plain Python, no compiling.
-
-1. Flash CircuitPython onto the XIAO (UF2, drag and drop) — get it from circuitpython.org/board/seeeduino_xiao/.
+1. Flash CircuitPython onto the XIAO
 2. Clone the KMK library (github.com/KMKfw/kmk_firmware) and copy its kmk/ folder onto the CIRCUITPY drive. Also install these CircuitPython libraries onto the board: adafruit_display_text, adafruit_displayio_ssd1306.
-3. Copy kmk/boot.py and kmk/code.py (this repo) to the root of the CIRCUITPY drive.
+3. Copy boot.py and code.py to the root of the CIRCUITPY drive.
 4. Reset the board (boot.py only runs on reset/power-up, not on save).
-
-Pin mapping is already confirmed and set in kmk/code.py — see the table below, nothing left to figure out.
 
 ## What it does
 
-- 9 programmable keys, multiple layers
-- Encoder: turning it forward/back seeks the currently playing track
-- Screen: shows the progress bar of whatever track is playing (see below, needs the companion script)
-- Per-key RGB backlighting
+- 9 programmable keys
+- Encoder: function described below
+- Screen: shows the progress bar of whatever track is playing 
+- Per key RGB backlighting
 
 ## The music bar
-
-The firmware alone has no idea what's playing on the PC, it has zero visibility into the OS's media players. To get the real track position on the OLED, a small script needs to run on the computer, read the player's state (Spotify, browser, whatever) and send it to the keyboard over raw HID. That script lives in `host/media_bridge.py`.
-
-If the script isn't running, the encoder still sends seek forward/back commands to the OS, the screen just won't show an updated bar.
+ 
+I implemented a feature called music bar, if you are playing something in the background the duration of the media is showed on the display and you can controll it with the encoder. If you want to use this function you need to run the .py program in the firmware folder because otherwise the microcontroller doesn't know what is the device playing
 
 ## Note
 
-Encoder push button is intentionally disconnected — no free GPIO left to give it its own matrix cell so it's not wired into anything and does nothing in firmware.
+The push button of the encoder is intentionally disconnected because there were no pins left on the microcontroller to connect it 
