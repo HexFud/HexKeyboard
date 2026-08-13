@@ -43,27 +43,18 @@ Homemade macropad: 9 keys in a 3x3 grid, a rotary encoder, and a 0.91" OLED scre
 
 ## Firmware
 
-Two firmware options are in this repo, pick one:
+Only KMK works on this board — QMK doesn't support the SAMD21 chip (there's an open QMK issue asking for it since 2020, never implemented; confirmed by trying to compile: processor: 'SAMD21' is not one of [...]). The qmk/ folder in this repo is kept only as a record of the matrix/pin design work, it will never actually compile.
 
-### QMK (`qmk/`)
+## KMK (kmk/)
 
-Standard QMK build, ARM/SAMD21 target.
+CircuitPython + KMK, plain Python, no compiling.
 
-```
-qmk compile -kb miatastiera -km default
-qmk flash -kb miatastiera -km default
-```
-
-### KMK (`kmk/`)
-
-CircuitPython + KMK, easier to read/hack on since it's plain Python, no compiling.
-
-1. Flash CircuitPython onto the XIAO (UF2, drag and drop).
-2. Install the KMK library and these CircuitPython libraries onto the board: `adafruit_display_text`, `adafruit_displayio_ssd1306`.
-3. Copy `kmk/boot.py` and `kmk/code.py` to the root of the CIRCUITPY drive.
+1. Flash CircuitPython onto the XIAO (UF2, drag and drop) — get it from circuitpython.org/board/seeeduino_xiao/.
+2. Clone the KMK library (github.com/KMKfw/kmk_firmware) and copy its kmk/ folder onto the CIRCUITPY drive. Also install these CircuitPython libraries onto the board: adafruit_display_text, adafruit_displayio_ssd1306.
+3. Copy kmk/boot.py and kmk/code.py (this repo) to the root of the CIRCUITPY drive.
 4. Reset the board (boot.py only runs on reset/power-up, not on save).
 
-Note: pin names in `kmk/code.py` use `board.D0`, `board.D1`, etc. — same pins as the QMK version, still need to confirm the exact mapping (see below).
+Pin mapping is already confirmed and set in kmk/code.py — see the table below, nothing left to figure out.
 
 ## What it does
 
