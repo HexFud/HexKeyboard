@@ -26,6 +26,12 @@ Homemade macropad: 9 keys in a 3x3 grid, a rotary encoder, and a 0.91" OLED scre
 
 ![Case](media/case.png)
 
+## Case Heated Inserts
+
+![Case](media/heated.png)
+
+You can put heated inserts in the highlited zones and then screw the pcb in 
+
 ## BOM
 
 | Qty | Part | Notes |
