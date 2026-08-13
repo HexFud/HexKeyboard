@@ -14,9 +14,13 @@ Homemade macropad: 9 keys in a 3x3 grid, a rotary encoder, and a 0.91" OLED scre
 
 ![Schematic](media/schematic.png)
 
-## PCB
+## PCB Render
 
 ![PCB](media/pcb.png)
+
+## PCB
+
+![PCB](media/pcbfinal.png)
 
 ## Case
 
